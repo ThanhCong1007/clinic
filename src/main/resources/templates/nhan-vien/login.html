@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Phòng khám Công Cường</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+       <!-- Libraries Stylesheet -->
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="/lib/twentytwenty/twentytwenty.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/nhan-vien.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    
+    <div class="login-section" th:if="${isSignIn}">
+    	<div class="container">
+    		<div class="login-form p-5" style="border: 2px solid rgb(9, 30, 62);">
+	    		<div class="row-gx-5">
+           			<h1 class="m-0 text-dark"><i class="fa fa-tooth me-2 mb-3"></i>Đăng nhập</h1>
+	    			<div class="col-lg-12">
+	    				<form action="#" th:action="@{/dang-nhap}" method="post" th:object="${account}">
+		    				<input type="text" class="form-control" placeholder="Tài khoản" style="height: 55px; border-radius: 15px;" th:field="*{username}">
+		    				<input type="password" class="form-control mt-3" placeholder="Mật khẩu" style="height: 55px; border-radius: 15px;" th:field="*{password}">
+		    				<div class="d-flex justify-content-between mt-1"  style="font-size:16px; font-style: italic; transform: translateY(7%);">
+		    					<a href="/dang-ky" class="m-0 text-dark px-1">Chưa có tài khoản ?</a>
+	                            <a href="" class="m-0 text-dark px-1">Quên mật khẩu</a>
+	                       </div>
+	                       <button class="btn btn-dark w-100 py-3" type="submit" style="border-radius: 15px; transform: translateY(30%);" th:if="${loginResult == '0'}">Đăng nhập</button>
+	                       <div th:if="${loginResult != '0'}">
+	                       		<button class="btn btn-dark w-100 py-3" type="submit" style="border-radius: 15px; transform: translateY(20%);">Đăng nhập</button>
+		    					<p class="m-0 text-center" style="font-size: 22px; font-weight: 700; color: red; transform: translateY(80%);" th:text="${notification}"></p>
+	                       </div>
+	    				</form>
+<!-- 	    				<form action="#" th:action="@{/nhan-vien/dang-nhap}" method="post" th:object="${account}"  th:unless="${loginByCustomer}"> -->
+<!-- 		    				<input type="text" class="form-control" placeholder="Tài khoản" style="height: 55px; border-radius: 15px;" th:field="*{Username}"> -->
+<!-- 		    				<input type="password" class="form-control mt-3" placeholder="Mật khẩu" style="height: 55px; border-radius: 15px;" th:field="*{Password}"> -->
+<!-- 		    				<div class="d-flex justify-content-end mt-1"  style="font-size:16px; font-style: italic; transform: translateY(7%);"> -->
+<!-- 	                            <a href="" class="m-0 text-dark px-1">Quên mật khẩu</a> -->
+<!-- 	                       </div> -->
+<!-- 	                       <button class="btn btn-dark w-100 py-3" type="submit" style="border-radius: 15px; transform: translateY(30%);" th:if="${loginResult == '0'}">Đăng nhập</button> -->
+<!-- 	                       <div  th:if="${loginResult != '0'}"> -->
+<!-- 	                       		<button class="btn btn-dark w-100 py-3" type="submit" style="border-radius: 15px; transform: translateY(20%);">Đăng nhập</button> -->
+<!-- 		    					<p class="m-0 text-center" style="font-size: 22px; font-weight: 700; color: red; transform: translateY(80%);" th:text="${notification}"></p> -->
+<!-- 	                       </div> -->
+<!-- 	    				</form> -->
+	    			</div>	
+	    		</div>
+    		</div>
+    	</div>
+    </div>
+    
+    <div class="login-section" th:if="${isSignUp}">
+    	<div class="container">
+    		<div class="login-form p-5" style="border: 2px solid rgb(9, 30, 62);">
+	    		<div class="row-gx-5">
+	    		   	<h1 class="m-0 text-dark"><i class="fa fa-tooth me-2 mb-3"></i>Đăng ký</h1>
+	    			<div class="col-lg-12">
+		    			<form action="#" th:action="@{/dang-ky}" method="post" th:object="${account}">
+		    				<input type="text" class="form-control mt-3" placeholder="Họ và tên" style="height: 55px; border-radius: 15px;">
+		    				<input type="number" class="form-control mt-3" placeholder="Số điện thoại" style="height: 55px; border-radius: 15px;">
+			    			<input type="password" class="form-control mt-3" placeholder="Mật khẩu" style="height: 55px; border-radius: 15px;">
+			    			<input type="password" class="form-control mt-3" placeholder="Xác nhận mật khẩu" style="height: 55px; border-radius: 15px;">
+			    			<div class="d-flex justify-content-start mt-1"  style="font-size:16px; font-style: italic; transform: translateY(7%);">
+	                            <a href="/dang-nhap" class="m-0 text-dark px-1">Đã có tài khoản</a>
+	                       </div>
+			    			<button class="btn btn-dark w-100 py-3" type="submit" style="border-radius: 15px; transform: translateY(30%);">Đăng ký</button>	  
+	    				</form>
+	    			</div>
+	    		</div>
+    		</div>
+    	</div>
+    </div>
+    
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/lib/wow/wow.min.js"></script>
+    <script src="/lib/easing/easing.min.js"></script>
+    <script src="/lib/waypoints/waypoints.min.js"></script>
+    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="/lib/twentytwenty/jquery.event.move.js"></script>
+    <script src="/lib/twentytwenty/jquery.twentytwenty.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

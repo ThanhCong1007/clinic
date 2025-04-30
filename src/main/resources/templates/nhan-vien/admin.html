@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Phòng khám Công Cường</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+       <!-- Libraries Stylesheet -->
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="/lib/twentytwenty/twentytwenty.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/nhan-vien.css" rel="stylesheet">
+    <link href="/css/tooplate-mini-finance.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    
+<!--   	<!-- Navbar Start --> -->
+<!--     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0"> -->
+<!--         <button type="button" class="btn text-dark mt-3 menu-toggle"><i class="fa-solid fa-bars" style="scale: 2;"></i></button> -->
+<!--         <div class="collapse navbar-collapse mt-3" id="navbarCollapse"> -->
+<!--             <div class="navbar-nav ms-auto py-0"> -->
+<!--                  <div class="nav-item dropdown"> -->
+<!--                     <a href="#" class="nav-link" data-bs-toggle="dropdown"  style="font-size: 24px;">Bs.Cường</a> -->
+<!--                     <div class="dropdown-menu m-0"> -->
+<!--                         <a href="#" class="dropdown-item"><i class="fa-regular fa-user pe-2"></i>Tài khoản</a> -->
+<!--                         <a href="/dang-nhap" class="dropdown-item"><i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Đăng xuất</a> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </nav> -->
+<!--     Navbar End -->
+    
+<!--     <form action="#" th:action="@{/tim-benh-nhan}" method="post" th:object="${benhNhan}"> -->
+<!--     	<input type="text" placeholder="Số điện thoại" style="height: 55px; border-radius: 15px;" th:field="*{sdt}"> <br> -->
+<!--     	<button class="btn btn-dark px-5" type="submit" style="border-radius: 15px;" >Tìm</button> -->
+<!--     </form> -->
+    
+<!--     <table th:if="${thongTinBenhNhan != null and thongTinBenhNhan != '0'}"> -->
+<!--     	<th:block th:each="bn : ${thongTinBenhNhan}" > -->
+<!--     		<tr> -->
+<!-- 		        <td>Số điện thoại: </td><td th:text="${bn.sdt}"></td> -->
+<!-- 		    </tr> -->
+<!-- 		    <tr> -->
+<!-- 		        <td>Họ tên: </td><td th:text="${bn.HoTen}">...</td> -->
+<!-- 		    </tr> -->
+<!-- 		    <tr> -->
+<!-- 		    	<td>Giới tính: </td><td th:text="${bn.getGioiTinhAsView}">...</td> -->
+<!-- 		    </tr> -->
+<!-- 		 </th:block> -->
+<!-- 	</table> -->
+	
+<!-- 	<table  th:if="${danhSachBenhAn != null}"> -->
+<!-- 		<th:block th:each="ba : ${danhSachBenhAn}"> -->
+<!-- 			<tr> -->
+<!-- 		        <td>Tên bệnh nhân: </td><td th:text="${ba.BenhNhan}">...</td> -->
+<!-- 		    </tr> -->
+<!-- 		    <tr> -->
+<!-- 		        <td>Tên bác sĩ: </td><td th:text="${ba.BacSi}">...</td> -->
+<!-- 		    </tr> -->
+<!-- 		    <tr> -->
+<!-- 		        <td>Ngày khám: </td><td th:text="${ba.NgayKham}">...</td> -->
+<!-- 		    </tr> -->
+<!-- 		    <tr> -->
+<!-- 		    	<td>Chuẩn đoán: </td><td th:text="${ba.ChuanDoan}">...</td> -->
+<!-- 		    </tr> -->
+<!-- 		</th:block> -->
+<!-- 	</table> -->
+	
+	
+<!-- 	<div th:if="${thongTinBenhNhan == '0'}"> -->
+<!-- 		<h4 class="display-7 mt-2">Không tìm thấy</h4> -->
+<!-- 		<button class="btn btn-dark px-5" type="button" onclick="displayAddForm()" style="border-radius: 15px;">Tạo hồ sơ mới</button> -->
+<!-- 		<form th:action="@{/them-benh-nhan}" method="post" th:object="${benhNhan}"> -->
+<!-- 			<div class="new-benh-nhan" id="add-benh-nhan-form"> -->
+<!-- 				<input type="text" placeholder="Họ và tên" style="height: 55px; border-radius: 15px;" th:field="*{HoTen}"> <br> -->
+<!-- 				<input type="number" placeholder="Số điện thoại" style="height: 55px; border-radius: 15px;" th:field="*{sdt}"> <br> -->
+<!-- 				<input type="radio" name="gioitinh" style="height: 55px; border-radius: 15px;" th:field="*{GioiTinh}" th:value="false"> Nam<br> -->
+<!-- 				<input type="radio" name="gioitinh" style="height: 55px; border-radius: 15px;" th:field="*{GioiTinh}" th:value="true"> Nữ<br> -->
+<!-- 				<input type="text" placeholder="Địa chỉ" style="height: 55px; border-radius: 15px;" th:field="*{DiaChi}"> <br> -->
+<!-- 				<button class="btn btn-dark px-5" type="submit" style="border-radius: 15px;" >Tạo mới</button> -->
+<!-- 			</div>s -->
+<!-- 		</form> -->
+<!-- 	</div> -->
+	
+<!-- 	<div> -->
+<!-- 		<form th:action="@{/them-benh-an}" method="post" th:object="${benhAn}"> -->
+<!-- 			<div> -->
+<!-- 				<input type="text" placeholder="Số điện thoại" style="height: 55px; border-radius: 15px;" th:field="*{sdt}"> <br> -->
+<!-- 				<input type="text" placeholder="Chuẩn đoán" style="height: 55px; border-radius: 15px;" th:field="*{ChuanDoan}"> <br> -->
+<!-- 				<button class="btn btn-dark px-5" type="submit" style="border-radius: 15px;" >Thêm</button> -->
+<!-- 			</div> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
+	
+	
+	
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/lib/wow/wow.min.js"></script>
+    <script src="/lib/easing/easing.min.js"></script>
+    <script src="/lib/waypoints/waypoints.min.js"></script>
+    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="/lib/twentytwenty/jquery.event.move.js"></script>
+    <script src="/lib/twentytwenty/jquery.twentytwenty.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/js/main.js"></script>
+    <script src="/js/nhan-vien.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+    <title>Phòng khám Công Cường</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+       <!-- Libraries Stylesheet -->
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="/lib/twentytwenty/twentytwenty.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/boc-rang-su.css" rel="stylesheet">
+   
+</head>
+<body>
+	<!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light ps-5 pe-0 d-none d-lg-block">
+        <div class="row gx-0">
+            <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center">
+                    <small class="py-2"><i class="far fa-clock text-primary me-2"></i>Mở cửa từ 6 giờ sáng đến 10 giờ tối các ngày trong tuần</small>
+                </div>
+            </div>
+            <div class="col-md-6 text-center text-lg-end">
+                <div class="position-relative d-inline-flex align-items-center bg-primary text-white top-shape px-5">
+                    <div class="me-3 pe-3 border-end py-2">
+                        <p class="m-0"><i class="fa fa-envelope-open me-2"></i>ncc9173@gmail.com</p>
+                    </div>
+                    <div class="py-2">
+                        <p class="m-0"><i class="fa fa-phone-alt me-2"></i>0842326539</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0 wow fadeInUp" data-wow-delay="0.1s" th:object="${user}">
+        <a href="/trang-chu" class="navbar-brand p-0">
+            <h1 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>Phòng khám Công Cường</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="/trang-chu" class="nav-item nav-link">Trang chủ</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Giới thiệu</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="/gioi-thieu/thong-tin-phong-kham" class="dropdown-item">Thông tin phòng khám</a>
+                        <a href="/gioi-thieu/bac-si" class="dropdown-item">Đội ngũ bác sĩ</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-item nav-link dropdown-toggle active" data-bs-toggle="dropdown">Bọc răng sứ</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="/dich-vu/boc-rang-su" class="dropdown-item active" th:if="${page == 'RS1'}">Bọc răng sứ thẩm mỹ</a>
+                        <a href="/dich-vu/boc-rang-su" class="dropdown-item" th:if="${page == 'RS2'}">Bọc răng sứ thẩm mỹ</a>
+                        <a href="/dich-vu/bang-gia-boc-rang-su" class="dropdown-item">Bảng giá bọc răng sứ</a>
+                        <a href="/dich-vu/dan-su-venner" class="dropdown-item" th:if="${page == 'RS1'}">Dán sứ Venner</a>
+                        <a href="/dich-vu/dan-su-venner" class="dropdown-item active" th:if="${page == 'RS2'}">Dán sứ Venner</a>
+                    </div>
+                </div>
+                 <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Dịch vụ khác</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="/dich-vu/nieng-rang-tham-my" class="dropdown-item">Niềng răng thẩm mỹ</a>
+                        <a href="/dich-vu/tram-rang-tham-my" class="dropdown-item">Trám răng thẩm mỹ</a>
+                        <a href="/dich-vu/cao-voi-rang" class="dropdown-item">Cạo vôi răng</a>
+                    </div>
+                </div>
+                <a href="/lien-he" class="nav-item nav-link">Liên hệ</a>
+            </div>
+            <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
+            <a href="/dat-lich" class="btn btn-primary py-2 px-4 ms-3">Đặt hẹn</a>
+            <a href="/dang-nhap" class="btn btn-secondary py-2 px-4 ms-3" th:if="${user == null}">Đăng nhập</a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Full Screen Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="input-group" style="max-width: 600px;">
+                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Full Screen Search End -->
+    
+    	<!-- Carousel Start -->
+	    <div class="container-fluid p-0" th:each="noidung, stat : ${trang}"  th:if="${noidung.getSection == '1'}">
+	        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" >
+	            <div class="carousel-inner">
+	                <div class="carousel-item active">
+	                    <img class="w-100" th:src="${noidung.TieuDe}" alt="Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Carousel End -->
+    
+    
+       <!-- About Start -->
+    <div class="container-fluid py-3 wow fadeInUp mt-3 mb-4" data-wow-delay="0.1s" >
+        <div class="container">
+        	
+        	<div class="row g-5 mb-3" th:each="noidung, stat : ${trang}" th:if="${noidung.getSection == '2' and noidung.getTrang == 'RS1' and noidung.getMoTa != ''}">
+                <div class="col-lg-12">
+                    <div class="section-title text-center">
+                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase mt-3 display-7" th:text="${noidung.TieuDe}">BỌC RĂNG SỨ LÀ GÌ? CÓ TỐT KHÔNG? GIÁ BỌC RĂNG SỨ BAO NHIÊU?</h4>
+                        
+                    </div>  
+                    <div class="section-title bg-light px-3 py-3 mb-3 mt-3">
+	                        <p style="font-size: 18px;" th:text="${noidung.MoTa}"><span style="font-weight: 600;">Bọc răng sứ </span>đang là phương án làm đẹp răng được đông đảo nhiều người thực hiện. 
+	                        Nhờ những ưu điểm vượt bậc, bọc răng sứ giúp khắc phục các khuyết điểm của răng cũ, mang lại một nụ cười trắng sáng, 
+	                        hàm răng mới đều đẹp tự nhiên, giúp người làm răng sứ tự tin hơn trong giao tiếp, cuộc sống hằng ngày. 
+	                        Vậy thực chất bọc răng sứ là gì? Bọc răng sứ có tốt như quảng cáo không? Chi phí (giá) bọc răng sứ bao nhiêu? 
+	                        Hãy cùng tìm hiểu với Phòng khám Công Cường.</p>
+	                </div>         
+                </div>
+            </div>
+            
+             <div class="row g-5" >
+             	<div class="col-lg-3" th:each="noidung, stat : ${trang}" th:if="${noidung.getSection == '2' and noidung.getMoTa == ''}">
+                    <div class="position-relative" >
+                    	<img class="position-absolut rounded wow zoomIn" th:src="${noidung.TieuDe}" data-wow-delay="0.9s">
+                    </div>
+                </div>
+                <div class="col-lg-7" th:each="noidung, stat : ${trang}" th:if="${noidung.getSection == '3'}">
+                    <div class="row g-5" >
+		                <div class="col-lg-12">
+		                    <div class="section-title">
+		                        <h4 class="display-7 text-dark-blue mb-3" th:text="${noidung.TieuDe}">DÁN SỨ VENEER LÀ GÌ? CÓ TỐT KHÔNG?</h4>
+		                        <p style="font-size: 18px;" th:text="${noidung.MoTa}">Công nghệ dán sứ Veneer hay còn gọi là mặt dán sứ Veneer, là một phương pháp sử dụng mặt dán làm bằng lớp sứ mỏng khoảng từ 0.2 mm - 0.5 mm. 
+		                        Mặt dán sứ này sẽ được dán cố định vào bên ngoài bề mặt răng cần được phục hình bằng keo dán răng sứ chuyên dụng sao cho ôm vừa khít toàn thân răng một cách tự nhiên nhất.</p>
+		                    </div>                      
+		                </div>
+            		</div>                     
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- About End -->
+    
+       <!-- About Start -->
+    <div class="container-fluid py-3 wow fadeInUp mb-5" data-wow-delay="0.1s" style="background-color: rgb(245,245,245);">
+        <div class="container mt-3">
+        
+        	<div  th:each="noidung, stat : ${trang}" th:if="${noidung.getSection == '4'}">
+        		<div class="row g-5 mb-3" >
+	                <div class="col-lg-12">
+	                    <div class="section-title text-center">
+	                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase display-7 mb-3" th:text="${noidung.TieuDe}">NHỮNG TRƯỜNG HỢP NÊN DÁN SỨ VENEER</h4>
+	                        
+	                        <p style="font-size: 18px;" th:if="${noidung.getTrang == 'RS1'}" th:text=${noidung.MoTa}>Với sự phát triển của công nghệ nha khoa, bọc răng sứ thẩm mỹ không chỉ đem lại một hàm răng trắng sáng tự nhiên. 
+		                        Mà còn giúp bạn khắc phục được các nhược điểm của răng như:</p>
+	                    </div>           
+	                </div>
+	            </div>
+        	</div>
+      		
+            
+            <div class="row g-5 px-5" th:if="${page == 'RS2'}">
+                
+                <div class="col-lg-12 px-5">
+                    <div class="row g-4 mb-4 d-flex justify-content-center px-5">
+		                <div class="col-lg-3 py-4 d-flex flex-column justify-content-center align-items-center ms-3 me-3" style="border: 1px solid rgb(0, 88, 153); border-radius: 15px;" th:each="noidung, stat : ${trang}" th:if="${noidung.getSection == '5'}">
+		                    <div class="row g-5">
+				                <div class="col-lg-12">
+				                    <div class="section-title ">
+				                        <img class="position-absolut rounded wow zoomIn" data-wow-delay="0.9s" th:src="@{${noidung.TieuDe}}">
+				                    </div>
+				                </div>
+				            </div>
+				            
+				            <div class="row g-5">
+				                <div class="col-lg-12">
+				                    <div class="section-title text-center">
+				                    	<img class="position-absolut rounded wow zoomIn m-3" data-wow-delay="0.9s" src="/img/ico_check.svg">
+		                        		<p class="text-dark-blue m-0 px-2" style="font-size: 18px;" th:text="${noidung.MoTa}">Răng mọc thưa, ở giữa các răng có khe hở nhỏ làm mất thẩm mỹ</p>
+		                    		</div>                
+				                </div>
+				            </div>
+		                </div>
+
+		            </div>  	                    
+                </div>
+                
+            </div>
+            
+            <div class="row g-5" th:if="${page == 'RS1'}">
+            
+                <div class="col-lg-6 mb-3" th:each="noidung, stat : ${trang}" th:if="${noidung.getSection == '5' and noidung.getMoTa == ''}">
+                    <div class="section-title text-center">
+						<img class="position-absolut rounded wow zoomIn" data-wow-delay="0.9s" th:src="@{${noidung.TieuDe}}">                    
+					</div>           
+                </div>
+                
+                <div class="col-lg-6" >
+                    <div class="row g-4 mb-4">
+		                <div class="col-lg-5 py-4 m-2" style="border: 1px solid rgb(0, 88, 153); border-radius: 15px;" th:each="noidung, stat : ${trang}" th:if="${noidung.getSection == '5' and noidung.getMoTa != ''}">
+		                    <div class="row g-5 mb-3">
+				                <div class="col-lg-12">
+				                    <div class="section-title text-center ">
+				                        <img class="position-absolut rounded wow zoomIn" data-wow-delay="0.9s" th:src="${noidung.TieuDe}">
+				                    </div>
+				                </div>
+				            </div>
+				            
+				            <div class="row g-5">
+				                <div class="col-lg-12">
+				                    <div class="section-title text-center">
+				                    	<img class="position-absolut rounded wow zoomIn mb-3" data-wow-delay="0.9s" src="/img/ico_check.svg">
+		                        		<p class="text-dark-blue" style="font-size: 16px; scale: 1.1;" th:text="${noidung.MoTa}">Răng bị sâu, sứt mẻ, gãy vỡ, viêm tủy, mòn men răng</p>
+		                    		</div>                
+				                </div>
+				            </div>
+		                </div>
+		            </div>  	                    
+                </div>
+                
+            </div>
+                      
+        </div>
+    </div>
+    <!-- About End -->
+     
+         <!-- About Start -->
+    <div class="container-fluid py-3 wow fadeInUp mt-3 mb-2" data-wow-delay="0.1s" th:each="noidung, stat : ${trang}" th:if="${noidung.getSection == '6'}">
+        <div class="container"  >
+        
+      		<div class="row g-5">
+            
+                <div class="col-lg-12">
+                    <div class="section-title text-center">
+                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase display-7" th:text="${noidung.TieuDe}">CÁC DÁNG RĂNG SỨ ĐƯỢC LỰA CHỌN NHIỀU TẠI PHÒNG KHÁM CÔNG CƯỜNG</h4>
+                    </div>           
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- About End -->
+    
+    
+    
+     <!-- Carousel Start -->
+    <div class="container-fluid p-0 mb-5" th:each="noidung, stat : ${trang}" th:if="${noidung.getSection == '6'}">
+        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" >
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="rounded wow zoomIn" data-wow-delay="0.9s" th:src="${noidung.MoTa}"> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel End -->
+    
+    
+      <!-- About Start -->
+    <div class="container-fluid py-3 wow fadeInUp" data-wow-delay="0.1s" th:each="noidung, stat : ${trang}" th:if="${noidung.getSection == '7'}">
+	        <div class="container">
+	        	
+	      		<div class="row g-5 mb-3">
+	                <div class="col-lg-12">
+	                    <div class="section-title text-center">
+	                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase display-7" th:text="${noidung.TieuDe}">DÁN SỨ VENEER GIÁ BAO NHIÊU ?</h4>
+	                    </div>           
+	                </div>
+	            </div>
+	            
+	            <div class="row g-5">
+	                <div class="col-lg-12">
+	                    <div class="row g-5">
+			                <div class="col-lg-12">
+			                    <div class="section-title">
+			                        <p style="font-size: 18px;" th:text="${noidung.MoTa}">Tại phòng khám Công Cường, 100% răng sứ cao cấp chính hãng được nhập khẩu trực tiếp từ Đức và Hoa Kỳ để đảm bảo kết quả tốt nhất cho khách hàng.
+									Bảng giá dưới đây là trọn gói cho 1 răng sứ. Cam kết không phát sinh thêm chi phí trong quá trình điều trị. 
+									Chi phí thăm khám ban đầu hoàn toàn miễn phí 100%. Ngoài ra, tại Phòng khám Công Cường, khách hàng còn được hỗ trợ thanh toán trả góp với lãi suất 0%.</p>
+			                    </div>                      
+			                </div>
+	            		</div>                     
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+    <!-- About End -->
+    
+    
+    <div class="price-section wow fadeInUp m-0" data-wow-delay="0.2s">
+     	<div class="price-container">
+     		<div class="price-row">
+     			<div class="price-item wow zoomIn" data-wow-delay="0.4s" th:each="bg, stat : ${banggia}">
+     				<div class="price-header bg-dark">
+     					<p class="text-center text-white m-0"  th:text="${bg.TenRang}"  >Răng sứ kim loại</p>
+     					<h4 class="text-center text-white m-0"  th:text="${bg.ChatLieu}"  >Ceramco 3 - Mỹ</h4>
+     				</div>
+     				<div class="price-body pt-3">
+     					<p class="text-center m-0"  th:text="${bg.BaoHanh}"  >(Bảo hành 3 năm)</p>
+     					<div class="position-relative mt-2 image-border">
+                    		<img class="position-absolut rounded wow zoomIn" data-wow-delay="0.4s" th:src="${bg.Img}">
+                    	</div>
+     					<h2 class="text-center mb-0 mt-3" th:text="${bg.Gia}" >1 000 000</h2>
+     				</div>
+     				<div class="price-footer">
+     					 <a href="" class="btn btn-dark py-2 px-4" style="border-radius: 20px;">Tư vấn ngay</a>
+     				</div>
+     			</div>
+     		</div>
+     	</div>
+     </div>
+     
+     <div class="container-fluid py-3 wow fadeInUp mar-top mb-0" data-wow-delay="0.1s" th:each="noidung, stat : ${trang}" th:if="${noidung.getSection == '8' and page == 'RS1'}">
+	        <div class="container">
+	            <div class="row g-5 mb-3">
+	                <div class="col-lg-12">
+	                    <div class="row g-5">
+			                <div class="col-lg-12">
+			                    <div class="section-title">
+			                        <p style="font-size: 18px;" th:text="${noidung.MoTa}">Bảng giá trên đây là giá trọn gói cho 1 răng sứ, bao gồm chi phí thăm khám, tư vấn và chụp phim CT, 
+			                        cam kết không phát sinh thêm bất kỳ chi phí nào khác trong quá trình điều trị.
+									Tại phòng khám Công Cường, 100% răng sứ cao cấp chính hãng được nhập khẩu trực tiếp từ Đức và Hoa Kỳ để đảm bảo kết quả tốt nhất cho khách hàng.
+									Ngoài ra, khách hàng còn được hỗ trợ bọc răng sứ trả góp với lãi suất 0%.</p>
+			                    </div>                      
+			                </div>
+	            		</div>                     
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    
+	      <!-- Appointment Start -->
+    <div class="container-fluid bg-primary bg-appointment my-5 wow fadeInUp position-relative" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-6 py-4">
+                    <div class="py-5">
+                        <h1 class="display-5 text-white mb-4">Cung cấp thông tin để nhận tư vấn ngay</h1>
+                        <p class="text-white mb-0">Đội ngũ nhân viên sẽ liên hệ với bạn trong thời gian sớm nhất sau khi tiếp nhận thông tin</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="appointment-form h-100 d-flex flex-column justify-content-center text-center px-5 wow zoomIn" data-wow-delay="0.6s">
+                        <form>
+                            <div class="row g-3">
+                               <div class="col-12">
+                                    <input type="text" class="form-control bg-light border-0 mt-3" placeholder="Họ và tên" style="height: 55px;">
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control bg-light border-0" placeholder="Số điện thoại" style="height: 55px;">
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-dark w-100 py-3 mt-4" type="submit">Nhận tư vấn</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Appointment End -->
+    
+    
+    <!-- Newsletter Start -->
+    <div class="container-fluid position-relative py-5 mt-5 wow fadeInUp" data-wow-delay="0.1s" style="z-index: 1;">
+        <div class="container">
+        </div>
+    </div>
+    <!-- Newsletter End -->
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light py-5 wow fadeInUp " data-wow-delay="0.3s" style="margin-top: -75px;">
+        <div class="container pt-5">
+            <div class="row g-5 pt-4">
+                <div class="col-lg-3 col-md-6">
+                    <h3 class="text-white mb-4">Quick Links</h3>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
+                        <a class="text-light" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h3 class="text-white mb-4">Popular Links</h3>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
+                        <a class="text-light" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h3 class="text-white mb-4">Get In Touch</h3>
+                    <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>123 Cao Lỗ, TP.HCM</p>
+                    <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>info@example.com</p>
+                    <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i>0842326539</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h3 class="text-white mb-4">Follow Us</h3>
+                    <div class="d-flex">
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded" href="#"><i class="fab fa-instagram fw-normal"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid text-light py-4" style="background: #051225;">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0">&copy; <a class="text-white border-bottom" href="#">Your Site Name</a>. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Designed by <a class="text-white border-bottom" href="https://htmlcodex.com">HTML Codex</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+    
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/lib/wow/wow.min.js"></script>
+    <script src="/lib/easing/easing.min.js"></script>
+    <script src="/lib/waypoints/waypoints.min.js"></script>
+    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="/lib/twentytwenty/jquery.event.move.js"></script>
+    <script src="/lib/twentytwenty/jquery.twentytwenty.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/js/main.js"></script>
+</body>
+</html>
